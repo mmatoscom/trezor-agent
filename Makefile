@@ -1,19 +1,13 @@
 NAME := trezor-agent
 
-PHONY: all select build run 
+PHONY: all  
 
-all: select build run
-
-select: 
-	@read -p "Enter your device brand- trezor, nano or keepkey: " device  
-	@echo "$$device" 
-build:
-	cat "$$device".Dockerfile > Dockerfile && export device=$$device
-	docker build -t $(NAME):$device .
-
-run:
+all:  
+	@read -p "Enter your device brand - trezor, nano or keepkey: " device && \
+	cat "$$device".Dockerfile > Dockerfile && \
+	docker build -t $(NAME):$$device . && export IMAGE=$(NAME):$$device && \
 	docker run -tid --restart=always \
 	--name trezor-agent -h trezor-agent \
 	--privileged -v /dev/bus/usb:/dev/bus/usb \
-	$(NAME):$$device
+	$$IMAGE
 	
