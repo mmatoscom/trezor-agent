@@ -6,6 +6,3 @@ LABEL maintainer "M Matos <marcomatos@google.com>"
     RUN pip3 install --upgrade setuptools
 	RUN pip3 install --user Cython hidapi
 	RUN pip3 install --user trezor_agent
-
-    WORKDIR $HOME
-    # ENTRYPOINT  ['.local/bin/trezor-agent']

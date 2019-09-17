@@ -10,5 +10,4 @@ all:
 	docker run -ti \
 	--name trezor-agent -h trezor-agent \
 	--privileged -v /dev/bus/usb:/dev/bus/usb \
-	$(NAME):$$device
-	
+	$(NAME):$$device trezor-agent 
